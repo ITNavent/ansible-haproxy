@@ -42,7 +42,7 @@ frontend {{ haproxy_frontend_name }}
     bind {{ haproxy_frontend_bind_address }}:{{ haproxy_frontend_port }}
     mode {{ haproxy_frontend_mode }}
 {% for acl in haproxy_frontend_acls %}
-    acl {{ acl.name }} {{ acl.criterion }} {{ acl.flags if acl.flags is defined }} {{ acl.operator if acl.operator is defined }} {{ acl.value }}
+    acl {{ acl.name }} {{ acl.criterion }} {{ acl.flags if acl.flags is defined else '' }} {{ acl.operator if acl.operator is defined else '' }} {{ acl.value }}
 {% endfor %}
 
 {% for use_backend in haproxy_use_backends %}
