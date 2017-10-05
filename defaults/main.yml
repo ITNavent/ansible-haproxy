@@ -16,9 +16,9 @@ haproxy_use_backends: []
 haproxy_backends:
   - name: 'habackend'
     options:
-      - mode: http
-      - balance: roundrobin
-      - server host1: 'localhost:8080'
+      - 'mode http'
+      - 'balance roundrobin'
+      - 'server host1 127.0.0.1:8080'
 
 # Extra global vars (see README for example usage).
 haproxy_global_vars: []

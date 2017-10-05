@@ -41,7 +41,6 @@ defaults
 frontend {{ haproxy_frontend_name }}
     bind {{ haproxy_frontend_bind_address }}:{{ haproxy_frontend_port }}
     mode {{ haproxy_frontend_mode }}
-    default_backend {{ haproxy_backend_name }}
 {% for acl in haproxy_frontend_acls %}
     acl {{ acl.name }} {{ acl.criterion }} {{ acl.flags if acl.flags is defined }} {{ acl.operator if acl.operator is defined }} {{ acl.value }}
 {% endfor %}
@@ -52,7 +51,7 @@ use_backend {{ use_backend.backend }} {{ use_backend.operator }} {{ use_backend.
 
 {% for backend in haproxy_backends %}
 backend {{ backend.name }}
-{% for key, value in backend.options %}
-{{ key }} {{ value }}
+{% for option in backend.options %}
+{{ option }}
 {% endfor %}
 {% endfor %}
