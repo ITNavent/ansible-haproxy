@@ -1,0 +1,19 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: 'Guido Navalesi'
+  description: HAProxy installation and configuration.
+  company: "Navent"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.2
+  platforms:
+  - name: Ubuntu
+    versions:
+      - precise
+      - trusty
+      - xenial
+  galaxy_tags:
+    - web
+    - networking
+    - cloud
