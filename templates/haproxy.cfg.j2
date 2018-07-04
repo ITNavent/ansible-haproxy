@@ -62,3 +62,7 @@ backend {{ backend.name }}
 {% endfor %}
 
 {% endfor %}
+
+{% if haproxy_extra_config != '' %}
+{{ haproxy_extra_config }}
+{% endif %}
