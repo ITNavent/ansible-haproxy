@@ -46,7 +46,7 @@ frontend {{ haproxy_frontend_name }}
     mode {{ haproxy_frontend_mode }}
 
 {% for acl in haproxy_frontend_acls %}
-    {{ acl }}
+    acl {{ acl }}
 
 {% endfor %}
 
