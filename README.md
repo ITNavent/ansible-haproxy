@@ -54,6 +54,16 @@ A list of backend servers (name and address) to which HAProxy will distribute re
       - 'ssl-default-bind-ciphers ABCD+KLMJ:...'
       - 'ssl-default-bind-options no-sslv3'
 
+A list of ACLs.
+
+    haproxy_frontend_acls:
+      - acl1 path_beg  -i  /test
+      
+Backends usage.
+
+    haproxy_use_backends:
+      - habackend if acl1
+
 A list of extra global variables to add to the global configuration section inside `haproxy.cfg`.
 
 ## Dependencies

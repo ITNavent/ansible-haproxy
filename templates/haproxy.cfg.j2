@@ -10,6 +10,7 @@ global
   user {{ haproxy_user }}
   group {{ haproxy_group }}
   daemon
+
 {% for global_var in haproxy_global_vars %}
   {{ global_var }}
 {% endfor %}
@@ -19,6 +20,7 @@ defaults
   mode  http
   option  httplog
   option  dontlognull
+
 {% if haproxy_version == '1.4' %}
         contimeout 5000
         clitimeout 50000
@@ -28,6 +30,7 @@ defaults
         timeout client 50000
         timeout server 50000
 {% endif %}
+
 {% if ansible_os_family == 'Debian' %}
   errorfile 400 /etc/haproxy/errors/400.http
   errorfile 403 /etc/haproxy/errors/403.http
@@ -41,12 +44,15 @@ defaults
 frontend {{ haproxy_frontend_name }}
     bind {{ haproxy_frontend_bind_address }}:{{ haproxy_frontend_port }}
     mode {{ haproxy_frontend_mode }}
+
 {% for acl in haproxy_frontend_acls %}
-    acl {{ acl.name }} {{ acl.criterion }} {{ acl.flags if acl.flags is defined else '' }} {{ acl.operator if acl.operator is defined else '' }} {{ acl.value }}
+    acl {{ acl }}
+
 {% endfor %}
 
 {% for use_backend in haproxy_use_backends %}
-use_backend {{ use_backend.backend }} {{ use_backend.operator }} {{ use_backend.condition }}
+use_backend {{ use_backend }}
+
 {% endfor %}
 
 {% for backend in haproxy_backends %}
@@ -54,4 +60,5 @@ backend {{ backend.name }}
 {% for option in backend.options %}
 {{ option }}
 {% endfor %}
+
 {% endfor %}
