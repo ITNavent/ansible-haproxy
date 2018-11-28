@@ -12,6 +12,9 @@ haproxy_frontend_mode: 'http'
 haproxy_frontend_acls: []
 haproxy_use_backends: []
 
+haproxy_frontend_binds:
+  - "{{ haproxy_frontend_bind_address }}:{{ haproxy_frontend_port }}"
+
 # Backend settings.
 haproxy_backends:
   - name: 'habackend'
