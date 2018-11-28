@@ -42,7 +42,9 @@ defaults
 {% endif %}
 
 frontend {{ haproxy_frontend_name }}
-    bind {{ haproxy_frontend_bind_address }}:{{ haproxy_frontend_port }}
+{% for bind in haproxy_frontend_binds %}
+    bind {{ bind }}
+{% endfor %}
     mode {{ haproxy_frontend_mode }}
 
 {% for acl in haproxy_frontend_acls %}
