@@ -25,5 +25,3 @@ haproxy_backends:
 
 # Extra global vars (see README for example usage).
 haproxy_global_vars: []
-
-haproxy_override_template: ''
